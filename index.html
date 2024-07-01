@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Waves</title>
+    <style>
+        :root {
+            --size: 500px;
+            --duration: 4s;
+        }
+        html,body {
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background-color: #1a1a1a;
+            display: flex;
+            position: relative;
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            margin: 0;
+        }
+        .timer {
+            font-size: 36px;
+            font-weight: bold;
+            color: #bdfd34;
+        }
+        .container {
+            width: var(--size);
+            height: var(--size);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .circle {
+            width: 10px;
+            height: 10px;
+            border: 3px solid #bdfd34;
+            border-radius: 100%;
+            position: absolute;
+            animation: waves infinite var(--duration) linear;
+        }
+        @keyframes waves {
+            0% {
+                width: 10px;
+                height: 10px;
+                opacity: 1;
+            }
+            100% {
+                  width: var(--size);
+                  height: var(--size);
+                  opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="circle"></div>
+        <div class="circle" style="
+        animation-delay: 1000ms;"></div>
+        <div class="circle" style="
+        animation-delay: 2000ms;"></div>
+        <div class="circle" style="
+        animation-delay: 3000ms;"></div>
+    </div>
+    <div class="timer" id="timer">00:00:0</div>
+    <script>
+        document.addEventListener("
+          DOMContentLoaded", funtion ()
+          {
+          const timerElement = document.
+              getElementById('timer');
+          let seconds = 0;
+          let minutes = 0;
+          let hours = 0;
+          funtion pad(number) {
+                return (number < 10) ? '0' + number : number ;
+            }
+            funtion updateTimer() {
+                seconds++;
+                if (seconds === 60) {
+                    seconds = 0 ;
+                    minutes++;
+                    if (minutes === 60) {
+                        minutes = 0;
+                        hours++;
+                    }
+                }
+                timerElement.textContent = pad(hours) + ':' + pad(minutes) + ':' + pad(seconds);
+            }
+            setInterval(updateTimer, 1000);
+         });
+    </script>
+</body>
+</html>
